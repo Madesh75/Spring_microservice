@@ -1,0 +1,78 @@
+
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - api-gateway
+    networks:
+      - app-net
+      
+  service-registry:
+    build: ./microservice-backend/service-registry
+    ports:
+      - "8761:8761"
+    networks:
+      - app-net
+      
+  api-gateway:
+    build: ./microservice-backend/api-gateway
+    ports:
+      - "8080:8080"
+    networks:
+      - app-net
+      
+  auth-service:
+    build: ./microservice-backend/auth-service
+    ports:
+      - "9030:9030"
+    networks:
+      - app-net
+
+  cart-service:
+    build: ./microservice-backend/cart-service
+    ports:
+      - "9060:9060"
+    networks:
+      - app-net
+
+  category-service:
+    build: ./microservice-backend/category-service
+    ports:
+      - "9000:9000"
+    networks:
+      - app-net
+
+  notification-service:
+    build: ./microservice-backend/notification-service
+    ports:
+      - "9020:9020"
+    networks:
+      - app-net
+
+  order-service:
+    build: ./microservice-backend/order-service
+    ports:
+      - "9070:9070"
+    networks:
+      - app-net
+
+  product-service:
+    build: ./microservice-backend/product-service
+    ports:
+      - "9010:9010"
+    networks:
+      - app-net
+
+  user-service:
+    build: ./microservice-backend/user-service
+    ports:
+      - "9050:9050"
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    driver: bridge
+
